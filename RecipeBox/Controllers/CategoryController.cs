@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Recipe.Models;
+using RecipeBox.Models;
 
 namespace RecipeBox.Controllers
 {
   public class CategoriesController : Controller
   {
-    private readonly RecipeContext _db;
+    private readonly RecipeBoxContext _db;
 
-    public CategoriesController(RecipeContext db)
+    public CategoriesController(RecipeBoxContext db)
     {
       _db = db;
     }
@@ -19,7 +19,7 @@ namespace RecipeBox.Controllers
     public ActionResult Index()
     {
       List<Category> categoryList = _db.Categories.ToList();
-      categoryList.Sort((x, y) => int.Compare(x.Recipes.Count, y.Recipes.Count));
+      // categoryList.Sort((x, y) => int.Compare(x.Recipes.Count, y.Recipes.Count));
       return View(categoryList);
     }
 
@@ -45,28 +45,28 @@ namespace RecipeBox.Controllers
       return View(thisCategory);
     }
 
-    public ActionResult AddRecipe(int id)
-    {
-      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      ViewBag.RecipeId = new SelectList(_db.Machines, "MachineId", "MachineName");
-      return View(thisCategory);
-    }
+    //   public ActionResult AddRecipe(int id)
+    //   {
+    //     var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+    //     ViewBag.RecipeId = new SelectList(_db.Machines, "MachineId", "MachineName");
+    //     return View(thisCategory);
+    //   }
 
-    [HttpPost]
-    public ActionResult AddRecipe
-    (Category category, int RecipeId)
-    {
-      if (RecipeId != 0)
-      {
-        var returnedJoin = _db.CategoryRecipe
-            .Any(join => join.RecipeId == RecipeId && join.CategoryId == Category.CategoryId);
-        if (!returnedJoin)
-        {
-          _db.CategoryRecipe.Add(new CategoryRecipe() { RecipeId = RecipeId, CategoryId = Category.CategoryId });
-        }
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = category.CategoryId });
-    }
+    //   [HttpPost]
+    //   public ActionResult AddRecipe
+    //   (Category category, int RecipeId)
+    //   {
+    //     if (RecipeId != 0)
+    //     {
+    //       var returnedJoin = _db.CategoryRecipe
+    //           .Any(join => join.RecipeId == RecipeId && join.CategoryId == Category.CategoryId);
+    //       if (!returnedJoin)
+    //       {
+    //         _db.CategoryRecipe.Add(new CategoryRecipe() { RecipeId = RecipeId, CategoryId = Category.CategoryId });
+    //       }
+    //     }
+    //     _db.SaveChanges();
+    //     return RedirectToAction("Details", new { id = category.CategoryId });
+    //   }
   }
 }

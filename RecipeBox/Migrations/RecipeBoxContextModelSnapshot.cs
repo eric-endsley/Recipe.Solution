@@ -2,12 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Recipe.Models;
+using RecipeBox.Models;
 
-namespace Recipe.Migrations
+namespace RecipeBox.Migrations
 {
-    [DbContext(typeof(RecipeContext))]
-    partial class RecipeContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(RecipeBoxContext))]
+    partial class RecipeBoxContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -16,7 +16,7 @@ namespace Recipe.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Recipe.Models.Category", b =>
+            modelBuilder.Entity("RecipeBox.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd();
@@ -28,7 +28,7 @@ namespace Recipe.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Recipe.Models.CategoryRecipe", b =>
+            modelBuilder.Entity("RecipeBox.Models.CategoryRecipe", b =>
                 {
                     b.Property<int>("CategoryRecipeId")
                         .ValueGeneratedOnAdd();
@@ -46,7 +46,7 @@ namespace Recipe.Migrations
                     b.ToTable("CategoryRecipe");
                 });
 
-            modelBuilder.Entity("Recipe.Models.Recipe", b =>
+            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeId")
                         .ValueGeneratedOnAdd();
@@ -58,14 +58,14 @@ namespace Recipe.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Recipe.Models.CategoryRecipe", b =>
+            modelBuilder.Entity("RecipeBox.Models.CategoryRecipe", b =>
                 {
-                    b.HasOne("Recipe.Models.Category", "Category")
+                    b.HasOne("RecipeBox.Models.Category", "Category")
                         .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Recipe.Models.Recipe", "Recipe")
+                    b.HasOne("RecipeBox.Models.Recipe", "Recipe")
                         .WithMany("Categories")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);

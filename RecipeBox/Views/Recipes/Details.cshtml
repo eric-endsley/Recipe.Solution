@@ -8,7 +8,7 @@
 
 <h5>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h5>
 
-@if (@Model.Machines.Count == 0)
+@if (@Model.Categories.Count == 0)
 {
   <h2>This recipe is not assigned to any categories</h2>
 }
@@ -33,5 +33,5 @@ else
 
 <p>@Html.ActionLink("Back to Recipes", "Index")</p>
 <p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
-<p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.CategoryId })</p>
+<p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.RecipeId })</p>
 <p>@Html.ActionLink("Remove Recipe", "Delete", new { id = Model.RecipeId })</p>

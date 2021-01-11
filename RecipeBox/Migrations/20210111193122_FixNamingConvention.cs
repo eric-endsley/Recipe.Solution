@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Recipe.Migrations
+namespace RecipeBox.Migrations
 {
-    public partial class Initial : Migration
+    public partial class FixNamingConvention : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
