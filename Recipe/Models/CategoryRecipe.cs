@@ -1,4 +1,4 @@
-namespace Recipe.Models
+namespace RecipeBox.Models
 {
   public class CategoryRecipe
   {

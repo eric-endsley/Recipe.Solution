@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Recipe.Models
+namespace RecipeBox.Models
 {
   public class Recipe
   {

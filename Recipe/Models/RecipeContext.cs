@@ -1,15 +1,15 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
-namespace Recipe.Models
+namespace RecipeBox.Models
 {
-  public class RecipeContext : DbContext
+  public class RecipeBoxContext : DbContext
   {
     public DbSet<Recipe> Recipes { get; set; }
     public virtual DbSet<Category> Categories { get; set; }
 
     public DbSet<CategoryRecipe> CategoryRecipe { get; set; }
 
-    public RecipeContext(DbContextOptions options) : base(options) { }
+    public RecipeBoxContext(DbContextOptions options) : base(options) { }
   }
 }

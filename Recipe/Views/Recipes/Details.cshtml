@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+
+<h3>Recipe Details</h3>
+
+<h5>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h5>
+
+@if (@Model.Machines.Count == 0)
+{
+  <h2>This recipe is not assigned to any categories</h2>
+}
+else
+{
+
+  <h4>Categories assigned to this recipe</h4>
+
+  <ul>
+    @foreach (var join in Model.Categories)
+    {
+      <li>@join.Category.Name</li>
+      @using (Html.BeginForm("DeleteCategory", "Recipes"))
+      {
+        @Html.Hidden("joinId", @join.CategoryRecipeId)
+        <input type="submit" value="Deassociate" />
+      }
+    }
+  </ul>
+
+}
+
+<p>@Html.ActionLink("Back to Recipes", "Index")</p>
+<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.CategoryId })</p>
+<p>@Html.ActionLink("Remove Recipe", "Delete", new { id = Model.RecipeId })</p>

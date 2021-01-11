@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+
+<h2>Fire engineer</h2>
+
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Deassociate" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

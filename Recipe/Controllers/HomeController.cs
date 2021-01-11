@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Recipe.Controllers
+namespace RecipeBox.Controllers
 {
   public class HomeController : Controller
   {

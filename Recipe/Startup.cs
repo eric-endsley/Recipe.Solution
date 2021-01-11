@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Recipe.Models;
+using RecipeBox.Models;
 
-namespace Recipe
+namespace RecipeBox
 {
   public class Startup
   {
@@ -25,7 +25,7 @@ namespace Recipe
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-          .AddDbContext<RecipeContext>(options => options
+          .AddDbContext<RecipeBoxContext>(options => options
           .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 
