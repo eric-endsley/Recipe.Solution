@@ -5,9 +5,9 @@ using System.IO;
 
 namespace Recipe.Models
 {
-  public class RecipeContextFactory : IDesignTimeDbContextRecipe<RecipeContext>
+  public class RecipeContextFactory : IDesignTimeDbContextFactory<RecipeContext>
   {
-    RecipeContext IDesignTimeDbContextRecipe<RecipeContext>.CreateDbContext(string[] args)
+    RecipeContext IDesignTimeDbContextFactory<RecipeContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
           .SetBasePath(Directory.GetCurrentDirectory())
