@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>My Favorite Recipes Dot Com</h1>
+
+<h2>Dashboard:</h2>
+<p>From here, you can manage your recipes!</p>
+<ul>
+  <li>Add recipes</li>
+  <li>Add categories</li>
+  <li>Associate recipes with categories</li>
+  <li>Remove recipes</li>
+  <li>Remove categories</li>
+  <li>And much more!</li>
+</ul>
+
+<div class="btn btn-success">@Html.ActionLink("View all Recipes", "Index", "Recipes")</div>
+<div class="btn btn-danger">@Html.ActionLink("View all Categories", "Index", "Categories")</div>
