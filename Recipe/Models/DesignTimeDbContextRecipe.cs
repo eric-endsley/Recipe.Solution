@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Recipe.Models
 {
-  public class RecipeContextRecipe : IDesignTimeDbContextRecipe<RecipeContext>
+  public class RecipeContextFactory : IDesignTimeDbContextRecipe<RecipeContext>
   {
     RecipeContext IDesignTimeDbContextRecipe<RecipeContext>.CreateDbContext(string[] args)
     {
