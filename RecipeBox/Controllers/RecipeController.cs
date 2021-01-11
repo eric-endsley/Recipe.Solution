@@ -33,6 +33,7 @@ namespace RecipeBox.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
       return View();
     }
 
@@ -43,7 +44,7 @@ namespace RecipeBox.Controllers
       var currentUser = await _userManager.FindByIdAsync(userId);
       recipe.User = currentUser;
       _db.Recipes.Add(recipe);
-      if(CategoryId != 0)
+      if (CategoryId != 0)
       {
         _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
       }
