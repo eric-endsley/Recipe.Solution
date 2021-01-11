@@ -45,28 +45,28 @@ namespace RecipeBox.Controllers
       return View(thisRecipe);
     }
 
-    //   public ActionResult AddCategory(int id)
-    //   {
-    //     var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-    //     ViewBag.CategoryId = new SelectList(_db.Categorys, "CategoryId", "CategoryName");
-    //     return View(thisRecipe);
-    //   }
+    public ActionResult AddCategory(int id)
+    {
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      return View(thisRecipe);
+    }
 
-    //   [HttpPost]
-    //   public ActionResult AddCategory
-    //   (Recipe recipe, int CategoryId)
-    //   {
-    //     if (CategoryId != 0)
-    //     {
-    //       var returnedJoin = _db.RecipeCategory
-    //           .Any(join => join.CategoryId == CategoryId && join.RecipeId == recipe.RecipeId);
-    //       if (!returnedJoin)
-    //       {
-    //         _db.RecipeCategory.Add(new RecipeCategory() { CategoryId = CategoryId, RecipeId = Recipe.RecipeId });
-    //       }
-    //     }
-    //     _db.SaveChanges();
-    //     return RedirectToAction("Details", new { id = recipe.RecipeId });
-    //   }
+    [HttpPost]
+    public ActionResult AddCategory
+    (Recipe recipe, int CategoryId)
+    {
+      if (CategoryId != 0)
+      {
+        var returnedJoin = _db.CategoryRecipe
+            .Any(join => join.CategoryId == CategoryId && join.RecipeId == recipe.RecipeId);
+        if (!returnedJoin)
+        {
+          _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
+        }
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = recipe.RecipeId });
+    }
   }
 }
