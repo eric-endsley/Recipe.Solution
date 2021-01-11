@@ -4,7 +4,7 @@ namespace Recipe.Models
 {
   public class Category
   {
-    public Catgory()
+    public Category()
     {
       this.Recipes = new HashSet<CategoryRecipe>();
     }
