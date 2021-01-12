@@ -14,5 +14,4 @@ namespace RecipeBox.Models
 
     public ICollection<CategoryRecipe> Recipes { get; }
   }
-
 }

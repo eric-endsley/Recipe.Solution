@@ -7,7 +7,7 @@
 
 <h1>Recipe Page for @User.Identity.Name</h1>
 
-@if (Model.Any())
+@if (@Model.Any())
 {
   <ul>
     @foreach (Recipe recipe in Model)

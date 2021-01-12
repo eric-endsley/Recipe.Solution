@@ -38,7 +38,7 @@ namespace RecipeBox.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Recipe recipe, int CategoryId)
+    public async Task<ActionResult> Create(Recipe recipe, int CategoryId, string ingredientString)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
@@ -49,6 +49,17 @@ namespace RecipeBox.Controllers
         _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
       }
       _db.SaveChanges();
+
+      List<string> ingredientList = ingredientString.Split(", ").ToList();
+      foreach (string ingredient in ingredientList)
+      {
+        Ingredient newIngredient = new Ingredient();
+        newIngredient.RecipeId = recipe.RecipeId;
+        newIngredient.IngredientName = ingredient;
+        _db.Ingredients.Add(newIngredient);
+      }
+      _db.SaveChanges();
+
       return RedirectToAction("Index");
     }
 
@@ -57,7 +68,9 @@ namespace RecipeBox.Controllers
       var thisRecipe = _db.Recipes
           .Include(recipe => recipe.Categories)
           .ThenInclude(join => join.Category)
+          .Include(recipe => recipe.Ingredients)
           .FirstOrDefault(recipe => recipe.RecipeId == id);
+
       return View(thisRecipe);
     }
 

@@ -11,6 +11,9 @@
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
 
+  @Html.Label("Please enter a list of ingredients separated with a comma")
+  @Html.TextArea("ingredientString")
+
   @Html.Label("Select Category")
   @Html.DropDownList("CategoryId")
 

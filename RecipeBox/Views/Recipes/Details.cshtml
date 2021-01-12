@@ -3,33 +3,26 @@
 }
 
 @model RecipeBox.Models.Recipe
+@using RecipeBox.Models;
 
-<h3>Recipe Details</h3>
+<h2>Recipe Details</h2>
 
-<h5>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h5>
+<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
 
-@if (@Model.Categories.Count == 0)
-{
-  <h2>This recipe is not assigned to any categories</h2>
-}
-else
-{
+<h5>Tags:
+  @foreach (var join in Model.Categories)
+  {
+    @join.Category.Name
+  }
+</h5>
 
-  <h4>Categories assigned to this recipe</h4>
-
-  <ul>
-    @foreach (var join in Model.Categories)
-    {
-      <li>@join.Category.Name</li>
-      @using (Html.BeginForm("DeleteCategory", "Recipes"))
-      {
-        @Html.Hidden("joinId", @join.CategoryRecipeId)
-        <input type="submit" value="Deassociate" />
-      }
-    }
-  </ul>
-
-}
+<h4>Ingredient List:</h4>
+<ul>
+  @foreach (Ingredient ingredient in @Model.Ingredients)
+  {
+    <li>@ingredient.IngredientName</li>
+  }
+</ul>
 
 <p>@Html.ActionLink("Back to Recipes", "Index")</p>
 <p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
